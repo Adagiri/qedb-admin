@@ -1,3 +1,8 @@
+can view all users
+can view a users profile, shipping addresses and orders
+can search and filter users by
+  - users who have bought products before
+  - users who have added products to their cart but have not checkout the products
 can view all products
 can view all categories
 can add products
