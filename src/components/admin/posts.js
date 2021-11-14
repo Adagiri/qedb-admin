@@ -9,11 +9,26 @@ import {
   ReferenceInput,
   SelectInput,
   TextInput,
-  Create
+  Create,
 } from "react-admin";
 
+const postFilters = [
+  <TextInput source="q" label="Search" alwaysOn />,
+  <ReferenceInput source="userId" label="User" reference="users" allowEmpty>
+    <SelectInput optionText="name" />
+  </ReferenceInput>,
+];
+
+const PostTitle = ({ record }) => {
+  return (
+    <span>
+      Editing - <i>{record ? `${record.title}` : ""}</i>
+    </span>
+  );
+};
+
 export const PostList = (props) => (
-  <List {...props}>
+  <List filters={postFilters} {...props}>
     <Datagrid>
       <TextField source="id" />
       <ReferenceField source="userId" reference="users">
@@ -27,7 +42,7 @@ export const PostList = (props) => (
 );
 
 export const PostEdit = (props) => (
-  <Edit {...props}>
+  <Edit title={<PostTitle />} {...props}>
     <SimpleForm>
       <ReferenceInput source="userId" reference="users">
         <SelectInput optionText="name" />
@@ -38,7 +53,6 @@ export const PostEdit = (props) => (
     </SimpleForm>
   </Edit>
 );
-
 
 export const PostCreate = (props) => (
   <Create {...props}>

@@ -1,9 +1,15 @@
 import { List, Datagrid, TextField, EmailField } from "react-admin";
 import CustomUrlField from "./CustomUrlField";
 
+import { TextInput} from "react-admin";
+
+const usersFilters  = [
+<TextInput source="name" label="Search a name" alwaysOn  />
+]
+
 export const UserList = (props) => {
   return (
-    <List {...props}>
+    <List filters={usersFilters} {...props}>
       <Datagrid rowClick="edit">
         {/* <TextField source="id" /> */}
         <TextField source="name" />
