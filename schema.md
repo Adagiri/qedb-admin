@@ -1,24 +1,5 @@
-- Products
-  id
-  title: Str
-  description: Str
-  images: [Str]
-  price: Numb
-  prevPrice: Numb
-  categories: [Str]
-  tags: [Str]
-  isAvailable: Bool
-  availability_count: Numb
-  volumes: Numb
-  pages: Numb
-  language: [Str]
-  commentary: Bool
-  commentary_by: Str
-  publisher: Str
-  weight: Numb
-  created_at: Date
-
 - Admin
+  -id: Str
   name: Str
   address{
   country: Str
@@ -32,34 +13,95 @@
   recovery_email: Str
   hours: Str
 
-- Staffs
-  name: Str
-  email: Str
-  password: Str
-  roles: [Str]
+**ShippingAddresses**
 
-- Customers
-  id: Str
-  name: Str
-  email: Str
-  oauth_id: Str
-  website_color: Str
-
-- ShippingAddresses
-  customer_id: Str
-  address: {
+- customerId: Str
+- address
   country: Str
   state: Str
   city: Str
   street: Str}
   created_at
 
-- Orders
-  product_ids: [Str]
-  date
-  payed: Bool
-  amount_payed: Numb / null
-  delivery_fee: Numb 
-  enroute
-  delivered
+**Customers**
 
+- id: Str
+- oauth_id: Str
+- name: Str
+- email: Str
+- hasNewsLetter: Bool
+- password
+
+**Products**
+
+- id: Str
+- images: [Str]
+- name: Str
+- price: Float
+- width: Float
+- height: Float
+- weight: Float
+- categories: [Str]
+- stock: Int
+- sales: Int
+- description: Str
+- isAvailable: Bool
+- volumes: Numb
+- pages: Numb
+- language: [Str]
+- commentary: Bool
+- commentary_by: Str
+- publisher: Str
+- created_at: Date
+
+**Orders**
+
+- date: Date
+- ref: Str
+- customer
+  id: Str
+  reference: Str
+  email: Str
+- address
+  country: Str
+  state: Str
+  city: Str
+  street: Str
+- status: Str [delivered, ordered, cancelled]
+- returned: Bool
+- items [Array]
+  id: Str
+  name: Str
+  price: Float
+  quantity: Int
+- deliveryFee: Float
+
+**Invoices**
+- date: Date
+- customer
+  id: Str
+  name: Str
+- order
+  ref: Str
+  id: Str
+- address
+  country: Str
+  state: Str
+  city: Str
+  street: Str
+- deliveryFee: Float
+
+**Reviews**
+
+- customer
+  id: Str
+  name: Str
+  email: Str
+- product
+  id: Str
+  name: Str
+- date: Date
+- rating: Int [1 - 5]
+- comment: Str
+- accepted: Bool
+- featured: Bool
