@@ -26,7 +26,6 @@
 **Customers**
 
 - id: Str
-- oauth_id: Str
 - name: Str
 - email: Str
 - hasNewsLetter: Bool
@@ -45,14 +44,7 @@
 - stock: Int
 - sales: Int
 - description: Str
-- isAvailable: Bool
-- volumes: Numb
-- pages: Numb
-- language: [Str]
-- commentary: Bool
-- commentary_by: Str
-- publisher: Str
-- created_at: Date
+- isAvailable: Bool- oauth_id: Str
 
 **Orders**
 
@@ -65,9 +57,8 @@
 - address
   country: Str
   state: Str
-  city: Str
-  street: Str
-- status: Str [delivered, ordered, cancelled]
+  city: Str- oauth_id: Str
+celled]
 - returned: Bool
 - items [Array]
   id: Str
