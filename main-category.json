@@ -1,0 +1,24 @@
+{
+  "id": "as90",
+  "name": "Aqeedah",
+  "title": "Books on Aqeedah",
+  "total": 100,
+  "authors": [
+    {
+      "id": "900",
+      "books": 6
+    }
+  ],
+  "languages": [
+    {
+      "id": "494",
+      "books": 100
+    }
+  ],
+  "publishers": [
+    {
+      "id": "899",
+      "books": 59
+    }
+  ]
+}

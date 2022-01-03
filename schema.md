@@ -33,16 +33,8 @@
 
 **Products**
 
-- id: Str
-- images: [Str]
-- name: Str
-- price: Float
-- width: Float
-- height: Float
-- weight: Float
 - categories: [Str]
-- stock: Int
-- sales: Int
+
 - description: Str
 - isAvailable: Bool- oauth_id: Str
 
@@ -96,3 +88,12 @@ celled]
 - comment: Str
 - accepted: Bool
 - featured: Bool
+
+
+**authors**
+Sheikh Muhammad solih Al Uthaymeen
+
+**languages**
+English
+Arabic
+English & Arabic

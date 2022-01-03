@@ -20,5 +20,18 @@ can search for products
 
 admin.mfawzaan.com
 
+# On adding a product
+ - saves the product to the product collection
+ - saves the 
 
-# Adding a product
+ category {
+   products: 500
+   title:
+ }
+
+
+#
+add authors
+add languages
+add tags 
+add categories
