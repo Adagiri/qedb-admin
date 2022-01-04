@@ -1,0 +1,16 @@
+{
+  "id": "0987ilanf8oweifbcro8e7iuwreev8yb",
+  "name": "Adagiri",
+  "email": "ibrahimridwan47@gmail.com",
+  "hasNewsLetter": false,
+  "password": "98328hufhashed3484urf9ur8of2b8u54498989",
+  "addresses": [
+    {
+      "country": "Nigeria",
+      "state": "Ilorin",
+      "city": "Post office",
+      "street": "NO 10, Block 567 Flat 5 Andrey Close",
+      "created_at": "20:20:20:00:00:00:0000"
+    }
+  ]
+}
