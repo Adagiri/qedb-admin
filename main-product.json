@@ -6,7 +6,7 @@
   "author": "Sheikh Muhammad Solih Al Uthaymeen",
   "publisher": "Daru Imaam Ahmad",
   "description": "Explanation of Al Ajroomiyyah by Sheikh muhammad al Uthaymeen",
-  "categories": "Fiqh",
+  "category": "Fiqh",
   "tags": ["Solaah", "Women", "Manners", "Jannah"],
   "price": 2500,
   "priceText": "$2500",
@@ -14,7 +14,7 @@
   "reviews": 3,
   "stock": 15,
   "sales": 20,
-  "media": {
+  "images": {
     "full": [
       {
         "src": "https://domain.com/path/to/image",
@@ -35,3 +35,4 @@
     ]
   }
 }
+

@@ -1,10 +1,10 @@
 //pages/index.tsx
-import dynamic from "next/dynamic";
+import dynamic from 'next/dynamic';
 
-const ReactAdmin = dynamic(() => import("../components/admin/ReactAdmin"), {
+const ReactAdmin = dynamic(() => import('../components/ReactAdmin'), {
   ssr: false,
 });
 
-const HomePage = () => <ReactAdmin />;
-
-export default HomePage;
+export default function HomePage() {
+  return <ReactAdmin />;
+}
