@@ -52,7 +52,7 @@ const QuickFilter = ({ label }) => {
 export const productFilters = [
   <SearchInput source='q' alwaysOn />,
   <ReferenceInput
-    source='category_id'
+    source='category'
     reference='categories'
     sort={{ field: 'id', order: 'ASC' }}
   >
@@ -63,8 +63,8 @@ export const productFilters = [
   <NumberInput source='height_gte' />,
   <NumberInput source='height_lte' />,
   <QuickFilter
-    label='resources.products.fields.stock_lte'
-    source='stock_lte'
+    label='resources.products.author'
+    source='author'
     defaultValue={10}
   />,
 ];
@@ -72,7 +72,7 @@ export const productFilters = [
 const ListActions = ({ isSmall }) => (
   <TopToolbar>
     {isSmall && <FilterButton />}
-    <SortButton fields={['reference', 'sales', 'stock']} />
+    <SortButton fields={['name', 'sales', 'stock', 'price']} />
     <CreateButton basePath='/products' />
     <ExportButton />
   </TopToolbar>
@@ -80,11 +80,11 @@ const ListActions = ({ isSmall }) => (
 
 export const ProductList = (props) => {
   const isSmall =
-    useMediaQuery < Theme > ((theme) => theme.breakpoints.down('sm'));
+    useMediaQuery((theme) => theme.breakpoints.down('sm'));
   return (
     <ListBase
       perPage={15}
-      // sort={{ field: 'reference', order: 'ASC' }}
+      sort={{ field: 'price', order: 'ASC' }}
       {...props}
     >
       <ProductListView isSmall={isSmall} />
@@ -107,7 +107,7 @@ const ProductListView = ({ isSmall }) => {
         )}
       </FilterContext.Provider>
       <Box display='flex'>
-        {/* <Aside /> */}
+        <Aside />
         <Box width={isSmall ? 'auto' : 'calc(100% - 16em)'}>
           <GridList />
           <Pagination rowsPerPageOptions={[10, 20, 40]} />
@@ -116,31 +116,3 @@ const ProductListView = ({ isSmall }) => {
     </>
   );
 };
-
-
-// export const ProductList = (props) => (
-//   <List {...props}>
-//     <Datagrid rowClick='edit'>
-//       <TextField source='id' />
-//       <UrlField source='url' />
-//       <NumberField source='rating' />
-//       <TextField source='author' />
-//       <DateField source='priceText' />
-//       <TextField source='tags' />
-//       <NumberField source='price' />
-//       <TextField source='publisher' />
-//       <ArrayField source='media.full'>
-//         <SingleFieldList>
-//           <ChipField source='magnify.src' />
-//         </SingleFieldList>
-//       </ArrayField>
-//       <NumberField source='stock' />
-//       <NumberField source='sales' />
-//       <NumberField source='reviews' />
-//       <TextField source='description' />
-//       <TextField source='category' />
-//       <TextField source='title' />
-//       <TextField source='subtitle' />
-//     </Datagrid>
-//   </List>
-// );

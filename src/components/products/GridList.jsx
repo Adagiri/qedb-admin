@@ -78,15 +78,14 @@ const LoadedGridList = (props) => {
     >
       {ids.map((id) => (
         <GridListTile
-          // @ts-ignore
           component={Link}
           key={id}
           to={linkToRecord(basePath, data[id].id)}
         >
-          <img src={data[id].images[0]} alt={data[id].title} />
+          <img src={data[id].images[0]} alt={data[id].name} />
           <GridListTileBar
             className={classes.tileBar}
-            title={data[id].title}
+            title={data[id].name}
             subtitle={
               <span>
                 <NumberField
