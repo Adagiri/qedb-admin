@@ -3,6 +3,8 @@ import {
   FirebaseDataProvider,
   FirebaseRealTimeSaga,
 } from 'react-admin-firebase';
+import { randomCharacters } from '../utils/codes';
+import { updateStockStatus } from './mutateProduct';
 
 const config = {
   apiKey: 'AIzaSyCtT8s3jAGhx7eUq-2X0rb5Rg_-KmjQTiU',
@@ -39,6 +41,33 @@ const options = {
   },
 };
 
-export const dataProvider = FirebaseDataProvider(config, options);
+const firebaseDataProvider = FirebaseDataProvider(config, options);
+
+export const dataProvider = {
+  ...firebaseDataProvider,
+
+  create: (resource, params) => {
+    if (resource === 'post') {
+      updateStockStatus(params);
+      params.data.url = `/product/bk-${randomCharacters(5)}`;
+      params.data.priceText = `NGN ${params.data.price}`;
+      params.data.soldBefore = 0;
+    }
+    return firebaseDataProvider.create(resource, params);
+  },
+  update: (resource, params) => {
+    if (resource === 'post') {
+      updateStockStatus(params);
+    }
+    return firebaseDataProvider.update(resource, params);
+  },
+  updateMany: (resource, params) => {
+    if (resource === 'post') {
+      updateStockStatus(params);
+    }
+    return firebaseDataProvider.updateMany(resource, params);
+  },
+};
+
 export const authProvider = FirebaseAuthProvider(config, options);
 // export const firebaseRealtime = FirebaseRealTimeSaga(dataProvider, options);

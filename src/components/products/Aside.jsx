@@ -36,47 +36,24 @@ const Aside = () => {
   return (
     <Card className={classes.root}>
       <CardContent>
-        <FilterLiveSearch />
+        <FilterLiveSearch source='title' />
 
         <FilterList label='Sales' icon={<AttachMoneyIcon />}>
           <FilterListItem
-            label='Best sellers'
+            label='Sold before'
             value={{
-              sales_lte: undefined,
-              sales_gt: 25,
-              sales: undefined,
-            }}
-          />
-          <FilterListItem
-            label='Average'
-            value={{
-              sales_lte: 25,
-              sales_gt: 10,
-              sales: undefined,
-            }}
-          />
-          <FilterListItem
-            label='Low'
-            value={{
-              sales_lte: 10,
-              sales_gt: 0,
-              sales: undefined,
+              soldBefore: 1,
             }}
           />
           <FilterListItem
             label='Never sold'
             value={{
-              sales_lte: undefined,
-              sales_gt: undefined,
               sales: 0,
             }}
           />
         </FilterList>
 
-        <FilterList
-          label='Stock'
-          icon={<BarChartIcon />}
-        >
+        <FilterList label='Stock' icon={<BarChartIcon />}>
           <FilterListItem
             label='Out of stock'
             value={{

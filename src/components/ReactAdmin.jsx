@@ -5,13 +5,14 @@ import Dashboard from './admin/Dashboard';
 // import authProvider from './admin/authProvider';
 import { dataProvider, authProvider } from '../../firebase/firebase';
 import { ProductList } from './products/ProductList';
+import ProductCreate from './products/ProductCreate';
+import products from './products';
 
 const App = () => {
- (async function () {
-    const user =  await authProvider.checkAuth();
-    console.log(user)
+  (async function () {
+    const user = await authProvider.checkAuth();
+    console.log(user);
   })();
-
 
   return (
     <Admin
@@ -23,9 +24,15 @@ const App = () => {
       <Resource
         name='products'
         list={ProductList}
-        icon={UserIcon}
+        create={ProductCreate}
         edit={EditGuesser}
       />
+      <Resource name='categories' />
+
+      <Resource name='authors' />
+      <Resource name='languages' />
+      <Resource name='translators' />
+      <Resource name='publishers' />
       {/* <Resource
       name="products"
       list={PostList}
