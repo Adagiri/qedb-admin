@@ -86,7 +86,7 @@ export const ProductList = (props) => {
   return (
     <ListBase
       perPage={15}
-      sort={{ field: 'createdAt', order: 'DSC' }}
+      sort={{ field: 'createdAt', order: 'ASC' }}
       {...props}
     >
       <ProductListView isSmall={isSmall} />

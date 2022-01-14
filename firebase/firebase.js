@@ -47,22 +47,28 @@ export const dataProvider = {
   ...firebaseDataProvider,
 
   create: (resource, params) => {
-    if (resource === 'post') {
+    if (resource === 'products') {
+
       updateStockStatus(params);
       params.data.url = `/product/bk-${randomCharacters(5)}`;
       params.data.priceText = `NGN ${params.data.price}`;
       params.data.soldBefore = 0;
+
+      console.log(params)
+
+      return firebaseDataProvider.create(resource, params);
     }
+
     return firebaseDataProvider.create(resource, params);
   },
   update: (resource, params) => {
-    if (resource === 'post') {
+    if (resource === 'products') {
       updateStockStatus(params);
     }
     return firebaseDataProvider.update(resource, params);
   },
   updateMany: (resource, params) => {
-    if (resource === 'post') {
+    if (resource === 'products') {
       updateStockStatus(params);
     }
     return firebaseDataProvider.updateMany(resource, params);

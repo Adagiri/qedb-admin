@@ -13,7 +13,7 @@ export const updateStockStatus = (params) => {
     params.data.stock_gt = 0;
   } else if (stock >= 10 && stock <= 49) {
     params.data.stock_lt = 50;
-    params.data.stock_gt = 10;
+    params.data.stock_gt = 9;
   } else {
     params.data.stock_gt = 49;
   }
