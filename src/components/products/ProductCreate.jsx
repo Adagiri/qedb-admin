@@ -33,7 +33,7 @@ const useStyles = makeStyles(styles);
 const ProductCreate = (props) => {
   const classes = useStyles();
   return (
-    <Create {...props}>
+    <Create redirect={'list'} {...props}>
       <TabbedForm initialValues={{ sales: 0 }}>
         <FormTab label='Image'>
           <ImageInput
