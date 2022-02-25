@@ -35,6 +35,7 @@ import {
   SimpleShowLayout,
   Show,
 } from 'react-admin';
+import LinkToRelatedQuestions from './LinkToRelatedQuestions';
 
 const ViewButton = ({ record }) => (
   <ShowButton basePath='/users' record={record} />
@@ -112,7 +113,9 @@ const UserListView = ({ isSmall }) => {
             label={isSmall ? 'app' : 'approved'}
             source='qapproved'
           />
+
           <ViewButton />
+          <LinkToRelatedQuestions />
         </Datagrid>
         <Pagination rowsPerPageOptions={[5, 10, 15, 20, 50]} />
       </Box>

@@ -4,6 +4,8 @@ import { makeStyles } from '@material-ui/core/styles';
 import { Link } from 'react-router-dom';
 import { useTranslate, FieldProps } from 'react-admin';
 import { stringify } from 'query-string';
+import ObjectID from 'bson-objectid';
+
 
 import questions from '../questions';
 
@@ -17,6 +19,8 @@ const useStyles = makeStyles({
 
 const LinkToRelatedQuestions = (props) => {
   const { record } = props;
+
+  console.log(record)
   const translate = useTranslate();
   const classes = useStyles();
   return record ? (
@@ -27,7 +31,7 @@ const LinkToRelatedQuestions = (props) => {
       to={{
         pathname: '/questions',
         search: stringify({
-          filter: JSON.stringify({ category: record.id }),
+          filter: JSON.stringify({ 'author.id':  record._id }),
         }),
       }}
       className={classes.link}

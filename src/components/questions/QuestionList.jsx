@@ -29,6 +29,10 @@ import {
   SelectArrayInput,
   ReferenceArrayInput,
   SelectInput,
+  SortButton,
+  TopToolbar,
+  CreateButton,
+  ExportButton,
 } from 'react-admin';
 import { useMediaQuery, Divider, Tabs, Tab, Theme } from '@material-ui/core';
 
@@ -37,13 +41,13 @@ import { makeStyles } from '@material-ui/core/styles';
 import UserReferenceField from '../users/UserReferenceField';
 import ThumbnailField from './ThumbnailField';
 
-
 const ViewButton = ({ record }) => (
   <ShowButton basePath='/questions' record={record} />
 );
 
 const questionFilters = [
   <SearchInput source='q' alwaysOn />,
+
   <ReferenceInput source='category' reference='categories'>
     <SelectInput source='name' />
   </ReferenceInput>,
@@ -63,19 +67,19 @@ const useGetTotals = (filterValues) => {
   const { total: totalPending } = useGetList(
     'questions',
     { perPage: 1, page: 1 },
-    { field: 'id', order: 'ASC' },
+    { field: 'createdAt', order: 'ASC' },
     { ...filterValues, status: 'pending' }
   );
   const { total: totalApproved } = useGetList(
     'questions',
     { perPage: 1, page: 1 },
-    { field: 'id', order: 'ASC' },
+    { field: 'createdAt', order: 'ASC' },
     { ...filterValues, status: 'approved' }
   );
   const { total: totalRejected } = useGetList(
     'questions',
     { perPage: 1, page: 1 },
-    { field: 'id', order: 'ASC' },
+    { field: 'createdAt', order: 'ASC' },
     { ...filterValues, status: 'rejected' }
   );
   return {
@@ -153,15 +157,17 @@ const TabbedDatagrid = (props) => {
         {filterValues.status === 'pending' && (
           <ListContextProvider value={{ ...listContext, ids: pending }}>
             <Datagrid {...props} optimized rowClick='edit'>
-              {/* {!isXSmall && <DateField source='createdAt' />} */}
-            <ThumbnailField />
-              
+              <ThumbnailField />
+              {!isXSmall && <DateField source='createdAt' />}
+
               <UserReferenceField />
+
+              <TextField source='text' />
 
               {!isXSmall && <TextField source='type' />}
               {!isXSmall && <TextField source='difficulty' />}
 
-              <TextField source='category' />
+              {!isXSmall && <TextField source='category' />}
               <ViewButton />
             </Datagrid>
           </ListContextProvider>
@@ -169,15 +175,16 @@ const TabbedDatagrid = (props) => {
         {filterValues.status === 'approved' && (
           <ListContextProvider value={{ ...listContext, ids: approved }}>
             <Datagrid {...props} optimized rowClick='edit'>
-              {/* {!isXSmall && <DateField source='createdAt' />} */}
-            <ThumbnailField />
-              
+              <ThumbnailField />
+              {!isXSmall && <DateField source='createdAt' />}
+
               <UserReferenceField />
+              <TextField source='text' />
 
               {!isXSmall && <TextField source='type' />}
               {!isXSmall && <TextField source='difficulty' />}
 
-              <TextField source='category' />
+              {!isXSmall && <TextField source='category' />}
               <ViewButton />
             </Datagrid>
           </ListContextProvider>
@@ -185,15 +192,15 @@ const TabbedDatagrid = (props) => {
         {filterValues.status === 'rejected' && (
           <ListContextProvider value={{ ...listContext, ids: rejected }}>
             <Datagrid {...props} optimized rowClick='edit'>
-              {/* {!isXSmall && <DateField source='createdAt' />} */}
-            <ThumbnailField />
-              
+              <ThumbnailField />
+              {!isXSmall && <DateField source='createdAt' />}
+
               <UserReferenceField />
 
               {!isXSmall && <TextField source='type' />}
               {!isXSmall && <TextField source='difficulty' />}
 
-              <TextField source='category' />
+              {!isXSmall && <TextField source='category' />}
               <ViewButton />
             </Datagrid>
           </ListContextProvider>
@@ -203,12 +210,21 @@ const TabbedDatagrid = (props) => {
   );
 };
 
+const ListActions = () => (
+  <TopToolbar>
+    <SortButton fields={['createdAt']} />
+    <CreateButton basePath='/questions' />
+    <ExportButton />
+  </TopToolbar>
+);
+
 const QuestionList = (props) => (
   <List
     {...props}
+    // actions={<ListActions />}
     filterDefaultValues={{ status: 'pending' }}
-    sort={{ field: 'date', order: 'DESC' }}
-    perPage={25}
+    sort={{ field: 'createdAt', order: 'ASC' }}
+    perPage={10}
     filters={questionFilters}
   >
     <TabbedDatagrid />

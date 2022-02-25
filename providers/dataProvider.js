@@ -3,9 +3,6 @@ import { fetchUtils } from 'react-admin';
 import axios from 'axios';
 import ObjectID from 'bson-objectid';
 
-const AUTH_TOKEN =
-  'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyMGNlY2ZiMmJmZTE0NjAwMGM1NjM1MiIsInJvbGUiOiJBZG1pbiIsImlzQWRtaW4iOnRydWUsImlzTW9kZXJhdG9yIjpmYWxzZSwiaWF0IjoxNjQ1MTgxMjU5LCJleHAiOjE2NTI5NTcyNTl9.IpT25KcpDgRU0MnjmJdJVBt-bVanJ-k2GWRPuaopu7c';
-
 const httpClient = (url, options = {}) => {
   if (!options.headers) {
     options.headers = new Headers({ Accept: 'application/json' });
@@ -13,7 +10,7 @@ const httpClient = (url, options = {}) => {
   // add your own headers here
   options.headers.set(
     'Authorization',
-    'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyMGNlY2ZiMmJmZTE0NjAwMGM1NjM1MiIsInJvbGUiOiJBZG1pbiIsImlzQWRtaW4iOnRydWUsImlzTW9kZXJhdG9yIjpmYWxzZSwiaWF0IjoxNjQ1MTgxMjU5LCJleHAiOjE2NTI5NTcyNTl9.IpT25KcpDgRU0MnjmJdJVBt-bVanJ-k2GWRPuaopu7c'
+    'Bearer ' + JSON.parse(localStorage.getItem('token'))
   );
   return fetchUtils.fetchJson(url, options);
 };
@@ -39,11 +36,11 @@ const myDataProvider = {
         const file = image.rawFile;
         // Get signed url
         const urlResponse = await axios({
-          url: 'http://localhost:9000/api/v1/users/get-signed-url',
+          url: `${process.env.NEXT_PUBLIC_BACKEND_API_URL}/users/get-signed-url`,
           method: 'GET',
           headers: {
             'Content-Type': 'application/json',
-            Authorization: AUTH_TOKEN,
+            Authorization: 'Bearer ' + JSON.parse(localStorage.getItem('token')),
           },
           params: {
             resource: `questions`,
@@ -89,11 +86,11 @@ const myDataProvider = {
       const file = params.data.image.rawFile;
       // Get signed url
       const urlResponse = await axios({
-        url: 'http://localhost:9000/api/v1/users/get-signed-url',
+        url: `${process.env.NEXT_PUBLIC_BACKEND_API_URL}/users/get-signed-url`,
         method: 'GET',
         headers: {
           'Content-Type': 'application/json',
-          Authorization: AUTH_TOKEN,
+          Authorization: 'Bearer ' + JSON.parse(localStorage.getItem('token')),
         },
         params: {
           resource: `categories`,
@@ -141,11 +138,11 @@ const myDataProvider = {
         const file = image.rawFile;
         // Get signed url
         const urlResponse = await axios({
-          url: 'http://localhost:9000/api/v1/users/get-signed-url',
+          url: `${process.env.NEXT_PUBLIC_BACKEND_API_URL}/users/get-signed-url`,
           method: 'GET',
           headers: {
             'Content-Type': 'application/json',
-            Authorization: AUTH_TOKEN,
+            Authorization: 'Bearer ' + JSON.parse(localStorage.getItem('token')),
           },
           params: {
             resource: `questions`,
@@ -185,11 +182,11 @@ const myDataProvider = {
         const file = image.rawFile;
         // Get signed url
         const urlResponse = await axios({
-          url: 'http://localhost:9000/api/v1/users/get-signed-url',
+          url: `${process.env.NEXT_PUBLIC_BACKEND_API_URL}/users/get-signed-url`,
           method: 'GET',
           headers: {
             'Content-Type': 'application/json',
-            Authorization: AUTH_TOKEN,
+            Authorization: 'Bearer ' + JSON.parse(localStorage.getItem('token')),
           },
           params: {
             resource: `categories`,
@@ -226,19 +223,5 @@ const myDataProvider = {
     }
   },
 };
-
-/**
- * Convert a `File` object returned by the upload input into a base 64 string.
- * That's not the most optimized way to store images in production, but it's
- * enough to illustrate the idea of data provider decoration.
- */
-const convertFileToBase64 = (file) =>
-  new Promise((resolve, reject) => {
-    const reader = new FileReader();
-    reader.onload = () => resolve(reader.result);
-    reader.onerror = reject;
-
-    reader.readAsDataURL(file.rawFile);
-  });
 
 export default myDataProvider;

@@ -1,4 +1,4 @@
-import QuestionIcon from '@material-ui/icons/Class';
+import QuestionIcon from '@material-ui/icons/LibraryBooks';
 import QuestionList, { QuestionShow } from './QuestionList';
 import { QuestionEdit } from './QuestionEdit';
 import { QuestionCreate } from './QuestionCreate';
